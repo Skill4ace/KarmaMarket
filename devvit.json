@@ -1,0 +1,50 @@
+{
+  "$schema": "https://developers.reddit.com/schema/config-file.v1.json",
+  "name": "karmadaq",
+  "post": {
+    "dir": "dist/client",
+    "entrypoints": {
+      "default": {
+        "entry": "index.html"
+      }
+    }
+  },
+  "server": {
+    "dir": "dist/server",
+    "entry": "index.cjs"
+  },
+  "media": {
+    "dir": "assets"
+  },
+  "redis": true,
+  "realtime": true,
+  "redditAPI": true,
+  "http": {
+    "domains": ["reddit.com", "oauth.reddit.com"]
+  },
+  "scheduler": {
+    "tasks": {
+      "price-engine-tick": {
+        "endpoint": "/internal/scheduler/price-engine-tick",
+        "cron": "*/2 * * * *"
+      }
+    }
+  },
+  "menu": {
+    "items": [
+      {
+        "label": "Create a new post",
+        "description": "karmadaq",
+        "location": "subreddit",
+        "forUserType": "moderator",
+        "endpoint": "/internal/menu/post-create"
+      }
+    ]
+  },
+  "triggers": {
+    "onAppInstall": "/internal/on-app-install"
+  },
+  "dev": {
+    "subreddit": "karmadaq_dev"
+  }
+}
